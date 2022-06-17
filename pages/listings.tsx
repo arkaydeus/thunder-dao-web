@@ -13,7 +13,7 @@ const Listings: NextPage = () => {
     <div>
       <Head>
         <title>Active Listings</title>
-        <meta name='description' content='Active Squiggle Listings' />
+        <meta name='description' content='Active Listings' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
 

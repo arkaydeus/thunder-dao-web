@@ -29,7 +29,7 @@ const Loans: NextPage = () => {
     <div>
       <Head>
         <title>Loan History</title>
-        <meta name='description' content='Squiggle DAO Loan History' />
+        <meta name='description' content='DAO Loan History' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
