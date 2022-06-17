@@ -4,14 +4,10 @@ import { useEffect, useState } from 'react'
 import Layout from '../components/Layout'
 import LoanSummary from '../components/LoanSummery'
 import LoanTable from '../components/LoanTable'
-import LoginForm from '../components/LoginForm'
-import MenuBar from '../components/MenuBar'
-import { useAuth } from '../context/AuthContext'
 import { Loan } from '../models/Loan'
 
 const Loans: NextPage = () => {
   const [loans, setLoans] = useState<Loan[]>([])
-  const { loggedIn } = useAuth()
 
   useEffect(() => {
     const getLoans = async () => {

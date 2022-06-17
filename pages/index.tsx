@@ -1,6 +1,7 @@
 import { NextPage } from 'next'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
+import ConsoleStats from '../components/ConsoleStats'
 import Layout from '../components/Layout'
 import { Loan } from '../models/Loan'
 
@@ -33,6 +34,7 @@ const Home: NextPage = () => {
           <div className='mt-8 text-2xl text-center md:mt-8 md:text-5xl'>
             Thunder DAO Management Console
           </div>
+          <ConsoleStats loans={loans} />
         </div>
       </Layout>
 

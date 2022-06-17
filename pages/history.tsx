@@ -5,7 +5,6 @@ import Layout from '../components/Layout'
 import LoanSummary from '../components/LoanSummery'
 import LoanTable from '../components/LoanTable'
 import { Loan } from '../models/Loan'
-// import Logo from '../public/logo.svg'
 
 const Loans: NextPage = () => {
   const [loans, setLoans] = useState<Loan[]>([])
