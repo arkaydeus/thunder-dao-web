@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import {
+  collection,
   doc,
   DocumentReference,
   getFirestore,
@@ -20,14 +21,16 @@ export interface IIdentifySummary {
   id?: string
 }
 
+export type ListingCollection = Record<string, NftProjectListings>
+
 export type nftfiContextType = {
-  listings?: NftProjectListings
-  attachProjectListings: (userId: string) => void
+  collections?: ListingCollection
+  attachProjectCollections: (userId: string) => void
 }
 
 const nftfiContextDefaultValues: nftfiContextType = {
-  listings: undefined,
-  attachProjectListings: () => {}
+  collections: undefined,
+  attachProjectCollections: () => {}
 }
 
 const NftfiContext = createContext<nftfiContextType>(nftfiContextDefaultValues)
@@ -42,22 +45,27 @@ type Props = {
 const db = getFirestore(firebaseApp)
 
 export const NftfiProvider = ({ children }: Props) => {
-  const [listings, setListings] = useState<NftProjectListings>()
+  const [collections, setCollections] = useState<ListingCollection>()
 
   console.log('Initiating nftfi provider')
 
-  const attachProjectListings = () => {
-    if (listings) return
+  const attachProjectCollections = () => {
+    if (collections) return
 
     const unsubscribe = onSnapshot(
-      doc(db, 'instances/prod/listings/FLUF'),
+      collection(db, 'instances/prod/listings'),
 
       async snapshot => {
-        const snapshotData: NftProjectListings | undefined = snapshot.data()
+        const snapshotData = snapshot.docs
 
         if (!snapshotData) return
 
-        setListings(snapshotData)
+        const collections: ListingCollection = {}
+        snapshotData.forEach(collection => {
+          collections[collection.id] = collection.data()
+        })
+
+        setCollections(collections)
       },
       error => {
         console.log('Firebase: ' + error.message)
@@ -69,12 +77,12 @@ export const NftfiProvider = ({ children }: Props) => {
 
   useEffect(() => {
     console.log('running attach once')
-    return attachProjectListings()
+    return attachProjectCollections()
   }, [])
 
   const value: nftfiContextType = {
-    listings,
-    attachProjectListings
+    collections,
+    attachProjectCollections
   }
 
   return (

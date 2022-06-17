@@ -36,7 +36,7 @@ const MenuItems = ({ selected }: { selected: string }) => {
             : // ? 'px-4 py-0 text-lg text-center border-0 rounded-full bg-slate-200 text-black'
               'text-lg text-center text-white'
         return (
-          <div className='flex justify-center mt-2 md:mt-8' key={item.path}>
+          <div className='flex justify-center mt-2 lg:mt-8' key={item.path}>
             <div className={isSelected}>
               <Link href={'/' + item.path}>{item.label}</Link>
             </div>
@@ -51,7 +51,7 @@ const MenuBar = ({ selected }: IMenuBar) => {
   const { logout } = useAuth()
 
   return (
-    <div className='items-center col-span-1 pb-6 border-b-2 md:border-b-0'>
+    <div className='items-center col-span-1 pb-6 border-b-2 lg:border-b-0'>
       <div className='md:max-w-[10rem] max-w-[5rem] mx-auto mt-16'>
         <Image
           layout='responsive'
@@ -73,7 +73,7 @@ const MenuBar = ({ selected }: IMenuBar) => {
         <MenuItems selected={selected} />
       </div>
       <div
-        className='mt-2 text-lg text-center text-white  md:mt-8'
+        className='mt-2 text-lg text-center text-white md:mt-8'
         onClick={() => logout()}
       >
         Logout

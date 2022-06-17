@@ -29,3 +29,5 @@ export const getArtwork = async (contractId: string, tokenId: string) => {
 export const valueOrAny = (value: string | number) => {
   return value || 'Any'
 }
+
+export const fromGwei = (val: number) => val / 10 ** 18

@@ -7,6 +7,7 @@ import LoginForm from '../components/LoginForm'
 import MenuBar from '../components/MenuBar'
 import { useAuth } from '../context/AuthContext'
 import { Loan } from '../models/Loan'
+// import Logo from '../public/logo.svg'
 
 const Loans: NextPage = () => {
   const [loans, setLoans] = useState<Loan[]>([])
@@ -17,10 +18,10 @@ const Loans: NextPage = () => {
       const response = await fetch(
         'https://api.nftfi.com/loans/history/0x82c66866043593fc59b4e6630b4455780fa89e2c'
       )
-      const data = await response.json()
+      const data: [] = await response.json()
       if (data) {
         const filteredData = data.filter(
-          (item: Loan) => item.status === 'escrow'
+          (item: Loan) => item.status !== 'escrow'
         )
         setLoans(filteredData)
       }
@@ -31,8 +32,8 @@ const Loans: NextPage = () => {
   return (
     <div>
       <Head>
-        <title>Current Loans</title>
-        <meta name='description' content='Current loans' />
+        <title>Loan History</title>
+        <meta name='description' content='Squiggle DAO Loan History' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
@@ -43,11 +44,11 @@ const Loans: NextPage = () => {
           </div>
         ) : (
           <div className='flex-1 grid-cols-5 lg:grid '>
-            <MenuBar selected='loans' />
+            <MenuBar selected='history' />
             <div className='flex flex-col col-span-4 px-8 text-white bg-black/50'>
               <div className='max-w-6xl'>
                 <div className='mt-8 text-2xl text-center md:mt-36 md:text-5xl'>
-                  Current DAO Loans
+                  DAO Loan History
                 </div>
                 <div>{loans && <LoanSummary loans={loans} />}</div>
                 <div>{loans && <LoanTable loans={loans} />}</div>

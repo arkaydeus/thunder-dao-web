@@ -2,11 +2,23 @@ import Link from 'next/link'
 import { calcApr, valueOrAny } from '../lib/utils'
 import { Loan } from '../models/Loan'
 
-const COL_CLASS = `flex flex-row justify-between sm:flex-1`
+const COL_CLASS = `flex flex-row justify-between items-center sm:flex-1`
 
 const niceDateTime = (value: string) => {
   const isoDate = new Date(value).toISOString()
   return isoDate.slice(0, 10) + ' ' + isoDate.slice(11, 19)
+}
+
+const timeBlock = (value: string) => {
+  const isoDate = new Date(value).toISOString()
+  const dateStr = isoDate.slice(0, 10)
+  const timeStr = isoDate.slice(11, 19)
+  return (
+    <div className='flex flex-col items-end sm:items-center'>
+      <div>{dateStr}</div>
+      <div>{timeStr}</div>
+    </div>
+  )
 }
 
 const LoanItems = ({ loans }: { loans: Loan[] | undefined }) => {
@@ -35,7 +47,7 @@ const LoanItems = ({ loans }: { loans: Loan[] | undefined }) => {
               <div className={COL_CLASS}>
                 <span className='font-bold sm:hidden'>Due time</span>
                 <span className='flex-1 text-right sm:text-center'>
-                  {valueOrAny(niceDateTime(loan.loanDueTime))}
+                  {timeBlock(loan.loanStartTime)}
                 </span>
               </div>
               <div className={COL_CLASS}>
@@ -57,9 +69,22 @@ const LoanItems = ({ loans }: { loans: Loan[] | undefined }) => {
                 </span>
               </div>
               <div className={COL_CLASS}>
-                <span className='font-bold sm:hidden'>Loan value (ETH)</span>
+                <span className='font-bold sm:hidden'>Repayment (ETH)</span>
                 <span className='flex-1 text-right sm:text-center'>
-                  {valueOrAny(loan.maximumRepaymentAmount / 10 ** 18)}
+                  {valueOrAny(
+                    (loan.maximumRepaymentAmount / 10 ** 18).toFixed(2)
+                  )}
+                </span>
+              </div>
+              <div className={COL_CLASS}>
+                <span className='font-bold sm:hidden'>Profit</span>
+                <span className='flex-1 text-right sm:text-center'>
+                  {valueOrAny(
+                    (
+                      loan.maximumRepaymentAmount / 10 ** 18 -
+                      loan.loanPrincipalAmount / 10 ** 18
+                    ).toFixed(2)
+                  )}
                 </span>
               </div>
               <div className={COL_CLASS}>
