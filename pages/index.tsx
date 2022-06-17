@@ -11,12 +11,12 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
-        <h1 className="text-2xl">
+      <main className="min-h-screen bg-black ">
+        <h1 className="text-2xl text-primary">
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
 
-        <p>Get started by editing</p>
+        <p className="bg-primaryLow text-primary">Get started by editing</p>
       </main>
 
       <footer></footer>
