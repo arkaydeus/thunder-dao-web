@@ -57,7 +57,6 @@ export const AuthProvider = ({ children }: Props) => {
         console.log(user.toJSON())
         if (user.email) setUserId(user.email)
         setLoggedIn(true)
-        // ...
       })
       .catch(error => {
         const errorMessage = error.message
