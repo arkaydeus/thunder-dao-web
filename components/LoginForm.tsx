@@ -25,10 +25,10 @@ const LoginForm = () => {
 
   return (
     <div className='flex flex-col items-center'>
-      <div className=' m-20 w-[600px]  bg-black/40 p-8 rounded-xl'>
+      <div className=' m-20 xl:w-[600px]  bg-black/40 p-8 rounded-xl'>
         <div className='flex items-center justify-between'>
           <div className='text-2xl text-white'>Thunder DAO login</div>
-          <div className='w-10'>
+          <div className='w-10 m-l-2'>
             <Image src={Logo} alt='logo' />
           </div>
         </div>
