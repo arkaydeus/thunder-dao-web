@@ -13,6 +13,10 @@ type MenuItem = {
 
 const MENU_ITEMS: MenuItem[] = [
   {
+    label: 'Home',
+    path: ''
+  },
+  {
     label: 'Listings',
     path: 'listings'
   },

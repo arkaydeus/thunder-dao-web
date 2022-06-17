@@ -1,6 +1,7 @@
 import { NextPage } from 'next'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
+import Layout from '../components/Layout'
 import LoanSummary from '../components/LoanSummery'
 import LoanTable from '../components/LoanTable'
 import LoginForm from '../components/LoginForm'
@@ -36,26 +37,15 @@ const Loans: NextPage = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <main className="min-h-screen bg-[url('../public/thunder.jpeg')] bg-cover bg-center flex justify-center">
-        {!loggedIn ? (
-          <div className='flex items-center justify-center flex-1'>
-            <LoginForm />
+      <Layout>
+        <div className='px-0 py-8 text-white md:px-16 max-w-7xl'>
+          <div className='mt-8 text-2xl text-center md:mt-8 md:text-5xl'>
+            Current DAO Loans
           </div>
-        ) : (
-          <div className='flex-1 grid-cols-5 lg:grid '>
-            <MenuBar selected='loans' />
-            <div className='flex flex-col col-span-4 px-8 text-white bg-black/50'>
-              <div className='max-w-6xl'>
-                <div className='mt-8 text-2xl text-center md:mt-36 md:text-5xl'>
-                  Current DAO Loans
-                </div>
-                <div>{loans && <LoanSummary loans={loans} />}</div>
-                <div>{loans && <LoanTable loans={loans} />}</div>
-              </div>
-            </div>
-          </div>
-        )}
-      </main>
+          <div>{loans && <LoanSummary loans={loans} />}</div>
+          <div>{loans && <LoanTable loans={loans} />}</div>
+        </div>
+      </Layout>
 
       <footer></footer>
     </div>
