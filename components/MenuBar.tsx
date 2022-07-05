@@ -27,6 +27,10 @@ const MENU_ITEMS: MenuItem[] = [
   {
     label: 'Loan history',
     path: 'history'
+  },
+  {
+    label: 'Configure projects',
+    path: 'projects'
   }
 ]
 
@@ -73,6 +77,11 @@ const MenuBar = ({ selected }: IMenuBar) => {
       <div className='pt-6 mt-8 text-lg text-center text-primary border-white/40'>
         Management console
       </div>
+      {process.env.NODE_ENV === 'development' && (
+        <div className='text-sm text-center text-secondary border-white/40'>
+          ({process.env.NODE_ENV})
+        </div>
+      )}
       <div className='flex-col items-center mt-16'>
         <MenuItems selected={selected} />
       </div>

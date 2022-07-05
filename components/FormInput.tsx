@@ -7,6 +7,7 @@ type Props = {
   disabled?: boolean
   type?: string
   register?: any
+  readonly?: boolean
 }
 
 const FormInput: React.FC<Props> = ({
@@ -15,7 +16,8 @@ const FormInput: React.FC<Props> = ({
   value,
   disabled,
   type,
-  register
+  register,
+  readonly
 }) => {
   return (
     // <div className="w-2/5 bg-slate-500">
@@ -28,6 +30,7 @@ const FormInput: React.FC<Props> = ({
           className='flex-1 w-full p-2 transition-all duration-700 border-2 rounded-lg xl:ml-4 outline-0 focus:border-opacity-100 border-primary border-opacity-20 text-primary bg-back1'
           type={type}
           name={name}
+          readOnly={readonly}
           {...register}
         ></input>
       </label>

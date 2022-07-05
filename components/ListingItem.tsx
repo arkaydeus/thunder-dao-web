@@ -63,7 +63,7 @@ const ListingItem = ({ listing, image }: IListingItem) => {
                       parseInt(listing.terms.loan.principal),
                       parseInt(listing.terms.loan.repayment),
                       parseInt(listing.terms.loan.duration)
-                    )
+                    ) || 0
                   )
                 )}
               </span>

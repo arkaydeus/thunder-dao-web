@@ -1,9 +1,18 @@
 export const calcApr = (
-  principal: number,
-  repayment: number,
-  duration: number
-) => {
-  return ((repayment * 100) / principal - 100) * (365 / duration)
+  principal: number | undefined,
+  repayment: number | undefined,
+  duration: number | undefined
+): number | undefined => {
+  if (!principal || !repayment || !duration) return
+
+  try {
+    return ((repayment * 100) / principal - 100) * (365 / duration)
+  } catch {
+    console.log(
+      `Problem calculating APR from ${principal}, ${repayment}, ${duration}`
+    )
+    return undefined
+  }
 }
 
 export const getMetadata = async (contractId: string, tokenId: string) => {
