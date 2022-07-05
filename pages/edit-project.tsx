@@ -2,7 +2,6 @@ import { NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import Layout from '../components/Layout'
-import ProjectRules from '../components/ProjectRules'
 import ProjectRulesForm from '../components/ProjectRulesForm'
 import { useNftfiContext } from '../context/NftfiContext'
 
