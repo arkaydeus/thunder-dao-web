@@ -22,7 +22,7 @@ const LoanSummary = ({ loans }: ILoanSummary) => {
           loan.loanPrincipalAmount,
           loan.maximumRepaymentAmount,
           loan.loanDuration / 86400
-        )
+        ) ?? 0
       )
       return track + loan.loanPrincipalAmount * apy
     }, 0) / totalVal

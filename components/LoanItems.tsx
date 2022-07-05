@@ -96,7 +96,7 @@ const LoanItems = ({ loans }: { loans: Loan[] | undefined }) => {
                         loan.loanPrincipalAmount,
                         loan.maximumRepaymentAmount,
                         loan.loanDuration / 86400
-                      )
+                      ) ?? 0
                     )
                   )}
                 </span>
