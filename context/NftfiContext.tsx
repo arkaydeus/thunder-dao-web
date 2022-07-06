@@ -140,10 +140,11 @@ export const NftfiProvider = ({ children }: Props) => {
   ): Promise<boolean> => {
     try {
       const docRef = doc(db, `instances/${environmentPath}/config/offerRules`)
+      const oldRule = offerRules && offerRules[projectName]
       await updateDoc(docRef, { [projectName]: newRule })
 
       await addConfigMessage(
-        `${userId} updated ${projectName} rules to - Max bid: ${newRule.maxBid}, Duration: ${newRule.duration}, Min rate: ${newRule.minRate}%`
+        `${userId} updated ${projectName} rules\nOld rules - **Max bid**: ${oldRule?.maxBid}, **Duration**: ${oldRule?.duration}, **Min rate**: ${oldRule?.minRate}%\nNew rules - **Max bid**: ${newRule.maxBid}, **Duration**: ${newRule.duration}, **Min rate**: ${newRule.minRate}%`
       )
 
       return true
