@@ -54,6 +54,8 @@ const ProjectRulesForm = ({ projectRule, projectName }: IProjectRule) => {
             label='Max bid (ETH)'
             name='maxBid'
             type='number'
+            min={0}
+            step={0.1}
             register={register('maxBid', {
               required: 'You must specify a max bid',
               valueAsNumber: true
@@ -68,6 +70,8 @@ const ProjectRulesForm = ({ projectRule, projectName }: IProjectRule) => {
             label='Min rate (%)'
             name='minRate'
             type='number'
+            min={0}
+            step={0.1}
             register={register('minRate', {
               required: 'You must specify a min rate',
               valueAsNumber: true

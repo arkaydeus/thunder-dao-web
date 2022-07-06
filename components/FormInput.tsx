@@ -8,6 +8,8 @@ type Props = {
   type?: string
   register?: any
   readonly?: boolean
+  min?: number
+  step?: number
 }
 
 const FormInput: React.FC<Props> = ({
@@ -17,7 +19,9 @@ const FormInput: React.FC<Props> = ({
   disabled,
   type,
   register,
-  readonly
+  readonly,
+  min,
+  step
 }) => {
   return (
     // <div className="w-2/5 bg-slate-500">
@@ -31,6 +35,8 @@ const FormInput: React.FC<Props> = ({
           type={type}
           name={name}
           readOnly={readonly}
+          min={min}
+          step={step}
           {...register}
         ></input>
       </label>
