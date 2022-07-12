@@ -113,7 +113,7 @@ export const NftfiProvider = ({ children }: Props) => {
 
   useEffect(() => {
     console.log('Attaching listings once')
-    return attachProjectCollections() && attachOfferRules()
+    return attachProjectCollections()
   }, [])
 
   useEffect(() => {
@@ -144,7 +144,13 @@ export const NftfiProvider = ({ children }: Props) => {
       await updateDoc(docRef, { [projectName]: newRule })
 
       await addConfigMessage(
-        `${userId} updated ${projectName} rules\nOld rules - **Max bid**: ${oldRule?.maxBid}, **Duration**: ${oldRule?.duration}, **Min rate**: ${oldRule?.minRate}%\nNew rules - **Max bid**: ${newRule.maxBid}, **Duration**: ${newRule.duration}, **Min rate**: ${newRule.minRate}%`
+        `${userId} updated ${projectName} rules\nOld rules - **Can offer: ** ${!!oldRule?.canOffer}, **Max bid**: ${
+          oldRule?.maxBid
+        }, **Duration**: ${oldRule?.duration}, **Min rate**: ${
+          oldRule?.minRate
+        }%\nNew rules - **Can offer: ** ${!!newRule?.canOffer}, **Max bid**: ${
+          newRule.maxBid
+        }, **Duration**: ${newRule.duration}, **Min rate**: ${newRule.minRate}%`
       )
 
       return true

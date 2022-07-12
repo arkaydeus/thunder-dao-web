@@ -1,10 +1,11 @@
 import Router from 'next/router'
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNftfiContext } from '../context/NftfiContext'
 import { OfferRule } from '../models/OfferRules'
 import Button from './Button'
 import FormInput from './FormInput'
+import Toggle from './Toggle'
 
 interface IProjectRule {
   projectRule: OfferRule
@@ -36,6 +37,11 @@ const ProjectRulesForm = ({ projectRule, projectName }: IProjectRule) => {
 
       <div className='w-full sm:w-96'>
         <form onSubmit={handleSubmit(onSubmit)}>
+          <Toggle
+            name='canOffer'
+            label='Can offer'
+            register={register('canOffer')}
+          />
           <FormInput
             label='Duration (days)'
             name='duration'
@@ -50,6 +56,7 @@ const ProjectRulesForm = ({ projectRule, projectName }: IProjectRule) => {
               {errors?.duration.message}
             </p>
           )}
+
           <FormInput
             label='Max bid (ETH)'
             name='maxBid'
